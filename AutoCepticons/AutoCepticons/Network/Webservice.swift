@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 
 enum Result<T, E: Error> {
     case success(T)
@@ -35,37 +36,51 @@ enum NetworkError: Error {
 final class Webservice: NSObject {
 
     let urlSession: URLSession
-
+    private let log = OSLog(subsystem: "com.talesp.autocepticons", category: "network")
     init(urlSession: URLSession = URLSession(configuration: URLSessionConfiguration.default)) {
         self.urlSession = urlSession
     }
 
     func load<T>(_ resource: Resource<T>,
-                 decoder: JSONDecoder = JSONDecoder(),
                  completion: @escaping (Result<T, NetworkError>) -> Void) -> URLSessionDataTask {
 
         let request = URLRequest(resource: resource)
 
         let task = urlSession.dataTask(with: request) { [unowned self] data, urlResponse, error in
             let result: Result<T, NetworkError>
-            if let response = urlResponse as? HTTPURLResponse,
-                let status = response.status,
-                let data = data {
+            if let response = urlResponse as? HTTPURLResponse, let status = response.status, let data = data {
                 switch status.responseType {
                 case .success:
+                    os_log(OSLogType.debug,
+                           log: self.log,
+                           "got [%{private}s] from network",
+                           String(describing: type(of: data)))
                     result = self.parse(data, for: resource, error: error)
                 case .redirection:
-                    result = Result(.redirection)
+                    os_log(OSLogType.debug,
+                           log: self.log,
+                           "Redirected to somewhere else...")
+                        result = Result(.redirection)
                 case .clientError:
                     let message = "[\(response.statusCode)]: \(HTTPURLResponse.localizedString(forStatusCode: response.statusCode))"
+                    os_log(OSLogType.error, log: self.log, "%{private}s", message)
                     result = Result(NetworkError.clientError(message))
                 case .serverError:
+                    os_log(OSLogType.error,
+                           log: self.log,
+                           "Server error: [%{private}s]",
+                           error?.localizedDescription ?? "")
                     result = Result(.serverError)
                 default:
+                    os_log(OSLogType.error,
+                           log: self.log,
+                           "Unknown error: [%{private}s]",
+                           error?.localizedDescription ?? "")
                     result = Result(.unknowm)
                 }
             }
             else if let error = error {
+                os_log(OSLogType.error, log: self.log, "Unknown error: [%{private}s]", error.localizedDescription)
                 result = Result(.networkError(error.localizedDescription))
             }
             else {
@@ -86,6 +101,7 @@ final class Webservice: NSObject {
                 result = try Result(resource.parse(data))
             }
             catch {
+                os_log(OSLogType.error, log: self.log, "error: [%{private}s] parsing data", error.localizedDescription)
                 result = Result(NetworkError.invalidData)
             }
         }

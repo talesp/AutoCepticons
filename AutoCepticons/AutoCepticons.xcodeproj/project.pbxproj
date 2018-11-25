@@ -13,8 +13,11 @@
 		0208CF1421AA35F2008977C2 /* TransformersList+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1321AA35F2008977C2 /* TransformersList+Resource.swift */; };
 		0208CF1621AA37C9008977C2 /* Transformers+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1521AA37C9008977C2 /* Transformers+Resource.swift */; };
 		0208CF1821AAD344008977C2 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1721AAD344008977C2 /* UserDefaults.swift */; };
+		0208CF1A21AB096A008977C2 /* StringEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1921AB096A008977C2 /* StringEncoder.swift */; };
+		0208CF1C21AB09C0008977C2 /* StringDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1B21AB09C0008977C2 /* StringDecoder.swift */; };
+		0208CF2021AB0F24008977C2 /* DecoderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1F21AB0F24008977C2 /* DecoderProtocol.swift */; };
 		0268821521A8D3A100676446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0268821421A8D3A100676446 /* AppDelegate.swift */; };
-		0268821721A8D3A100676446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0268821621A8D3A100676446 /* ViewController.swift */; };
+		0268821721A8D3A100676446 /* AllSparkLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0268821621A8D3A100676446 /* AllSparkLoaderViewController.swift */; };
 		0268821C21A8D3A200676446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0268821B21A8D3A200676446 /* Assets.xcassets */; };
 		0268821F21A8D3A200676446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0268821D21A8D3A200676446 /* LaunchScreen.storyboard */; };
 		0268822A21A8D3A300676446 /* AutoCepticonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0268822921A8D3A300676446 /* AutoCepticonsTests.swift */; };
@@ -25,6 +28,9 @@
 		0268823F21A9B68300676446 /* URLRequest+Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0268823E21A9B68300676446 /* URLRequest+Resource.swift */; };
 		0268824121A9B6A600676446 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0268824021A9B6A600676446 /* Webservice.swift */; };
 		0268824321A9B6CC00676446 /* ViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0268824221A9B6CC00676446 /* ViewConfiguration.swift */; };
+		02CA851E21AB1D83003CA5A2 /* AllSparkLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA851D21AB1D83003CA5A2 /* AllSparkLoaderView.swift */; };
+		02F3C7A521AB269500883A06 /* TransformersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3C7A421AB269500883A06 /* TransformersViewController.swift */; };
+		02F3C7A721AB26AC00883A06 /* TransformersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3C7A621AB26AC00883A06 /* TransformersView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,9 +50,12 @@
 		0208CF1321AA35F2008977C2 /* TransformersList+Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransformersList+Resource.swift"; sourceTree = "<group>"; };
 		0208CF1521AA37C9008977C2 /* Transformers+Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transformers+Resource.swift"; sourceTree = "<group>"; };
 		0208CF1721AAD344008977C2 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		0208CF1921AB096A008977C2 /* StringEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEncoder.swift; sourceTree = "<group>"; };
+		0208CF1B21AB09C0008977C2 /* StringDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDecoder.swift; sourceTree = "<group>"; };
+		0208CF1F21AB0F24008977C2 /* DecoderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderProtocol.swift; sourceTree = "<group>"; };
 		0268821121A8D3A100676446 /* AutoCepticons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoCepticons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0268821421A8D3A100676446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0268821621A8D3A100676446 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0268821621A8D3A100676446 /* AllSparkLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSparkLoaderViewController.swift; sourceTree = "<group>"; };
 		0268821B21A8D3A200676446 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0268821E21A8D3A200676446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0268822021A8D3A200676446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +69,9 @@
 		0268823E21A9B68300676446 /* URLRequest+Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Resource.swift"; sourceTree = "<group>"; };
 		0268824021A9B6A600676446 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		0268824221A9B6CC00676446 /* ViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfiguration.swift; sourceTree = "<group>"; };
+		02CA851D21AB1D83003CA5A2 /* AllSparkLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSparkLoaderView.swift; sourceTree = "<group>"; };
+		02F3C7A421AB269500883A06 /* TransformersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersViewController.swift; sourceTree = "<group>"; };
+		02F3C7A621AB26AC00883A06 /* TransformersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +124,12 @@
 		0268821321A8D3A100676446 /* AutoCepticons */ = {
 			isa = PBXGroup;
 			children = (
+				02F3C7A321AB266D00883A06 /* Transformers List Scene */,
 				0208CF0E21AA3460008977C2 /* Model */,
 				0268823721A9B54600676446 /* Network */,
 				0268823421A9B50100676446 /* Extensions */,
 				0268821421A8D3A100676446 /* AppDelegate.swift */,
-				0268821621A8D3A100676446 /* ViewController.swift */,
+				02F3C7A221AB265B00883A06 /* AllSpark Loader */,
 				0268821B21A8D3A200676446 /* Assets.xcassets */,
 				0268821D21A8D3A200676446 /* LaunchScreen.storyboard */,
 				0268822021A8D3A200676446 /* Info.plist */,
@@ -152,8 +165,29 @@
 				0268823E21A9B68300676446 /* URLRequest+Resource.swift */,
 				0268824021A9B6A600676446 /* Webservice.swift */,
 				0208CF1121AA353D008977C2 /* TransformersAPIConfig.swift */,
+				0208CF1921AB096A008977C2 /* StringEncoder.swift */,
+				0208CF1B21AB09C0008977C2 /* StringDecoder.swift */,
+				0208CF1F21AB0F24008977C2 /* DecoderProtocol.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		02F3C7A221AB265B00883A06 /* AllSpark Loader */ = {
+			isa = PBXGroup;
+			children = (
+				0268821621A8D3A100676446 /* AllSparkLoaderViewController.swift */,
+				02CA851D21AB1D83003CA5A2 /* AllSparkLoaderView.swift */,
+			);
+			path = "AllSpark Loader";
+			sourceTree = "<group>";
+		};
+		02F3C7A321AB266D00883A06 /* Transformers List Scene */ = {
+			isa = PBXGroup;
+			children = (
+				02F3C7A421AB269500883A06 /* TransformersViewController.swift */,
+				02F3C7A621AB26AC00883A06 /* TransformersView.swift */,
+			);
+			path = "Transformers List Scene";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,19 +290,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02CA851E21AB1D83003CA5A2 /* AllSparkLoaderView.swift in Sources */,
 				0268824321A9B6CC00676446 /* ViewConfiguration.swift in Sources */,
 				0208CF1421AA35F2008977C2 /* TransformersList+Resource.swift in Sources */,
+				0208CF2021AB0F24008977C2 /* DecoderProtocol.swift in Sources */,
 				0208CF1021AA3471008977C2 /* TransformersList.swift in Sources */,
+				0208CF1C21AB09C0008977C2 /* StringDecoder.swift in Sources */,
 				0268823B21A9B61F00676446 /* HTTPStatusCode.swift in Sources */,
 				0268823921A9B56400676446 /* HTTPMethod.swift in Sources */,
+				0208CF1A21AB096A008977C2 /* StringEncoder.swift in Sources */,
 				0268824121A9B6A600676446 /* Webservice.swift in Sources */,
 				0268823621A9B51E00676446 /* Optionals.swift in Sources */,
 				0208CF0D21AA344C008977C2 /* Transformer.swift in Sources */,
+				02F3C7A521AB269500883A06 /* TransformersViewController.swift in Sources */,
 				0268823D21A9B64B00676446 /* Resource.swift in Sources */,
 				0208CF1621AA37C9008977C2 /* Transformers+Resource.swift in Sources */,
 				0208CF1221AA353D008977C2 /* TransformersAPIConfig.swift in Sources */,
 				0208CF1821AAD344008977C2 /* UserDefaults.swift in Sources */,
-				0268821721A8D3A100676446 /* ViewController.swift in Sources */,
+				02F3C7A721AB26AC00883A06 /* TransformersView.swift in Sources */,
+				0268821721A8D3A100676446 /* AllSparkLoaderViewController.swift in Sources */,
 				0268821521A8D3A100676446 /* AppDelegate.swift in Sources */,
 				0268823F21A9B68300676446 /* URLRequest+Resource.swift in Sources */,
 			);

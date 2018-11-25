@@ -17,6 +17,10 @@ extension Transformer {
         return Resource(url: Transformer.resourceBaseURL)
     }
 
+    static var allSparkResource: Resource<String> {
+        return Resource(url: self.baseURL.appendingPathComponent("allspark"), decoder: StringDecoder())
+    }
+
     static func get(id: String) -> Resource<Transformer> {
         let url = Transformer.resourceBaseURL.appendingPathComponent(id)
         return Resource(url: url)

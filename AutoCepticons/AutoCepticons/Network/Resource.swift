@@ -18,7 +18,7 @@ extension Resource {
 
     init(url: URL,
          method: HTTPMethod<T> = .get,
-         decoder: JSONDecoder = JSONDecoder(),
+         decoder: DecoderProtocol = JSONDecoder(),
          encoder: JSONEncoder = JSONEncoder()) {
         self.url = url
         self.method = method.map { json in
