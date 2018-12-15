@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow()
 
         if UserDefaults.allSpark != nil {
-            let viewController = UIViewController()
+            let viewController = TransformersViewController()
 
             rootViewController = UINavigationController(rootViewController: viewController)
             let buttonItem = UIBarButtonItem(barButtonSystemItem: .add,
@@ -39,6 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     @objc
     func createTransformer(sender: Any) {
-        rootViewController?.pushViewController(UIViewController(), animated: true)
+        rootViewController?.pushViewController(TransformerViewController(transformer: nil), animated: true)
     }
 }

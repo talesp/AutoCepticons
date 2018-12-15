@@ -8,9 +8,16 @@
 
 import Foundation
 
+enum HTTPHeader {
+    case contentType(String)
+    case accept(String)
+    case authorization(String)
+}
+
 struct Resource<T: Codable> {
     let url: URL
     let method: HTTPMethod<Data>
+    let headers: [HTTPHeader]
     let parse: (Data) throws -> T
 }
 
@@ -18,6 +25,7 @@ extension Resource {
 
     init(url: URL,
          method: HTTPMethod<T> = .get,
+         headers: [HTTPHeader],
          decoder: DecoderProtocol = JSONDecoder(),
          encoder: JSONEncoder = JSONEncoder()) {
         self.url = url
@@ -29,6 +37,7 @@ extension Resource {
                 fatalError(error.localizedDescription)
             }
         }
+        self.headers = headers
         self.parse = { data in
             return try decoder.decode(T.self, from: data)
         }

@@ -11,7 +11,18 @@ import Foundation
 extension URLRequest {
     init<A>(resource: Resource<A>) {
         self.init(url: resource.url)
-        httpMethod = resource.method.method
+//        httpMethod = resource.method.method
+        httpMethod = "POST"
+        for header in resource.headers {
+            switch header {
+            case .accept(let accept):
+                setValue(accept, forHTTPHeaderField: "Accept")
+            case .authorization(let token):
+                setValue(token, forHTTPHeaderField: "Authorization")
+            case .contentType(let contentType):
+                setValue(contentType, forHTTPHeaderField: "Content-Type")
+            }
+        }
         if case let .post(data) = resource.method {
             httpBody = data
         }

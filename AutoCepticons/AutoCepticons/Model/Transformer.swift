@@ -10,45 +10,48 @@ import Foundation
 
 class Transformer: Codable {
     let id: String?
-    let courage: String
-    let endurance: String
-    let firepower: String
-    let intelligence: String
     let name: String
-    let rank: String
-    let skill: String
-    let speed: String
-    let strength: String
     let team: String
-    let teamIcon: String
-
+    let strength: String
+    let intelligence: String
+    let speed: String
+    let endurance: String
+    let rank: String
+    let courage: String
+    let firepower: String
+    let skill: String
+    let teamIconURLString: String?
+    var teamIconURL: URL? {
+        return URL(string: teamIconURLString ?? "")
+    }
+    
     enum CodingKeys: String, CodingKey {
-        case courage = "courage"
-        case endurance = "endurance"
-        case firepower = "firepower"
         case id = "id"
-        case intelligence = "intelligence"
         case name = "name"
-        case rank = "rank"
-        case skill = "skill"
-        case speed = "speed"
-        case strength = "strength"
         case team = "team"
-        case teamIcon = "team_icon"
+        case strength = "strength"
+        case intelligence = "intelligence"
+        case speed = "speed"
+        case endurance = "endurance"
+        case rank = "rank"
+        case courage = "courage"
+        case firepower = "firepower"
+        case skill = "skill"
+        case teamIconURLString = "team_icon"
     }
 
-    init(id: String?,
-         courage: String,
-         endurance: String,
-         firepower: String,
-         intelligence: String,
+    init(id: String? = nil,
          name: String,
-         rank: String,
-         skill: String,
-         speed: String,
-         strength: String,
          team: String,
-         teamIcon: String) {
+         strength: String,
+         intelligence: String,
+         speed: String,
+         endurance: String,
+         rank: String,
+         courage: String,
+         firepower: String,
+         skill: String,
+         teamIconURLString: String? = nil) {
         self.courage = courage
         self.endurance = endurance
         self.firepower = firepower
@@ -60,6 +63,6 @@ class Transformer: Codable {
         self.speed = speed
         self.strength = strength
         self.team = team
-        self.teamIcon = teamIcon
+        self.teamIconURLString = teamIconURLString
     }
 }

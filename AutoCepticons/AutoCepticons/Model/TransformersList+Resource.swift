@@ -14,6 +14,7 @@ extension TransformersList {
 
     static func resource() -> Resource<TransformersList> {
         let url = self.baseURL.appendingPathComponent(self.pathURLString)
-        return Resource(url: url)
+        let headers: [HTTPHeader] = []
+        return Resource(url: url, headers:headers)
     }
 }

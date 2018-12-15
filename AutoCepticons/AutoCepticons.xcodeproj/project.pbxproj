@@ -16,6 +16,7 @@
 		0208CF1A21AB096A008977C2 /* StringEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1921AB096A008977C2 /* StringEncoder.swift */; };
 		0208CF1C21AB09C0008977C2 /* StringDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1B21AB09C0008977C2 /* StringDecoder.swift */; };
 		0208CF2021AB0F24008977C2 /* DecoderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1F21AB0F24008977C2 /* DecoderProtocol.swift */; };
+		0241D19321BE05100096CB04 /* TransformerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0241D19221BE05100096CB04 /* TransformerViewController.swift */; };
 		0268821521A8D3A100676446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0268821421A8D3A100676446 /* AppDelegate.swift */; };
 		0268821721A8D3A100676446 /* AllSparkLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0268821621A8D3A100676446 /* AllSparkLoaderViewController.swift */; };
 		0268821C21A8D3A200676446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0268821B21A8D3A200676446 /* Assets.xcassets */; };
@@ -31,6 +32,9 @@
 		02CA851E21AB1D83003CA5A2 /* AllSparkLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA851D21AB1D83003CA5A2 /* AllSparkLoaderView.swift */; };
 		02F3C7A521AB269500883A06 /* TransformersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3C7A421AB269500883A06 /* TransformersViewController.swift */; };
 		02F3C7A721AB26AC00883A06 /* TransformersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3C7A621AB26AC00883A06 /* TransformersView.swift */; };
+		02F3C7AA21AB2E3200883A06 /* TransformerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3C7A921AB2E3200883A06 /* TransformerView.swift */; };
+		11DD992F291DCBA3F8DB6271 /* Pods_AutoCepticonsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F86201BCC1D5BE5093C4204 /* Pods_AutoCepticonsTests.framework */; };
+		B8BD66BCD1690C3B80508596 /* Pods_AutoCepticons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8AFDFC3F718024DF9E7547C /* Pods_AutoCepticons.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,7 @@
 		0208CF1921AB096A008977C2 /* StringEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEncoder.swift; sourceTree = "<group>"; };
 		0208CF1B21AB09C0008977C2 /* StringDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDecoder.swift; sourceTree = "<group>"; };
 		0208CF1F21AB0F24008977C2 /* DecoderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderProtocol.swift; sourceTree = "<group>"; };
+		0241D19221BE05100096CB04 /* TransformerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerViewController.swift; sourceTree = "<group>"; };
 		0268821121A8D3A100676446 /* AutoCepticons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoCepticons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0268821421A8D3A100676446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0268821621A8D3A100676446 /* AllSparkLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSparkLoaderViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +77,13 @@
 		02CA851D21AB1D83003CA5A2 /* AllSparkLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSparkLoaderView.swift; sourceTree = "<group>"; };
 		02F3C7A421AB269500883A06 /* TransformersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersViewController.swift; sourceTree = "<group>"; };
 		02F3C7A621AB26AC00883A06 /* TransformersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersView.swift; sourceTree = "<group>"; };
+		02F3C7A921AB2E3200883A06 /* TransformerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerView.swift; sourceTree = "<group>"; };
+		0F86201BCC1D5BE5093C4204 /* Pods_AutoCepticonsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoCepticonsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20655965B1E3A7A1B47B8714 /* Pods-AutoCepticons.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCepticons.release.xcconfig"; path = "Pods/Target Support Files/Pods-AutoCepticons/Pods-AutoCepticons.release.xcconfig"; sourceTree = "<group>"; };
+		3AD2D34B83B378D43672A084 /* Pods-AutoCepticonsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCepticonsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AutoCepticonsTests/Pods-AutoCepticonsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E00E90E5E38BE85C48807BFD /* Pods-AutoCepticons.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCepticons.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AutoCepticons/Pods-AutoCepticons.debug.xcconfig"; sourceTree = "<group>"; };
+		E536B4DDE90932CEBE24F0E7 /* Pods-AutoCepticonsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoCepticonsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AutoCepticonsTests/Pods-AutoCepticonsTests.release.xcconfig"; sourceTree = "<group>"; };
+		E8AFDFC3F718024DF9E7547C /* Pods_AutoCepticons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AutoCepticons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8BD66BCD1690C3B80508596 /* Pods_AutoCepticons.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11DD992F291DCBA3F8DB6271 /* Pods_AutoCepticonsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +123,8 @@
 				0268821321A8D3A100676446 /* AutoCepticons */,
 				0268822821A8D3A300676446 /* AutoCepticonsTests */,
 				0268821221A8D3A100676446 /* Products */,
+				E3B74678894D7E2C55BDF075 /* Pods */,
+				1DDAA907DE7DADEF441916ED /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,6 +140,7 @@
 		0268821321A8D3A100676446 /* AutoCepticons */ = {
 			isa = PBXGroup;
 			children = (
+				02F3C7A821AB2E1200883A06 /* Transformer Scene */,
 				02F3C7A321AB266D00883A06 /* Transformers List Scene */,
 				0208CF0E21AA3460008977C2 /* Model */,
 				0268823721A9B54600676446 /* Network */,
@@ -190,6 +207,35 @@
 			path = "Transformers List Scene";
 			sourceTree = "<group>";
 		};
+		02F3C7A821AB2E1200883A06 /* Transformer Scene */ = {
+			isa = PBXGroup;
+			children = (
+				02F3C7A921AB2E3200883A06 /* TransformerView.swift */,
+				0241D19221BE05100096CB04 /* TransformerViewController.swift */,
+			);
+			path = "Transformer Scene";
+			sourceTree = "<group>";
+		};
+		1DDAA907DE7DADEF441916ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8AFDFC3F718024DF9E7547C /* Pods_AutoCepticons.framework */,
+				0F86201BCC1D5BE5093C4204 /* Pods_AutoCepticonsTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E3B74678894D7E2C55BDF075 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E00E90E5E38BE85C48807BFD /* Pods-AutoCepticons.debug.xcconfig */,
+				20655965B1E3A7A1B47B8714 /* Pods-AutoCepticons.release.xcconfig */,
+				3AD2D34B83B378D43672A084 /* Pods-AutoCepticonsTests.debug.xcconfig */,
+				E536B4DDE90932CEBE24F0E7 /* Pods-AutoCepticonsTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,6 +243,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0268822E21A8D3A300676446 /* Build configuration list for PBXNativeTarget "AutoCepticons" */;
 			buildPhases = (
+				4D1DF7AE23E3403F92CEFB97 /* [CP] Check Pods Manifest.lock */,
 				0268820D21A8D3A100676446 /* Sources */,
 				0268820E21A8D3A100676446 /* Frameworks */,
 				0268820F21A8D3A100676446 /* Resources */,
@@ -214,9 +261,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0268823121A8D3A300676446 /* Build configuration list for PBXNativeTarget "AutoCepticonsTests" */;
 			buildPhases = (
+				294BFE4CFE62C4C079788271 /* [CP] Check Pods Manifest.lock */,
 				0268822121A8D3A300676446 /* Sources */,
 				0268822221A8D3A300676446 /* Frameworks */,
 				0268822321A8D3A300676446 /* Resources */,
+				9332E25D25C18FF7ECCCA502 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -285,6 +334,81 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		294BFE4CFE62C4C079788271 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AutoCepticonsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D1DF7AE23E3403F92CEFB97 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AutoCepticons-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9332E25D25C18FF7ECCCA502 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AutoCepticonsTests/Pods-AutoCepticonsTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSSnapshotTestCase/FBSnapshotTestCase.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AutoCepticonsTests/Pods-AutoCepticonsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0268820D21A8D3A100676446 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -306,8 +430,10 @@
 				0268823D21A9B64B00676446 /* Resource.swift in Sources */,
 				0208CF1621AA37C9008977C2 /* Transformers+Resource.swift in Sources */,
 				0208CF1221AA353D008977C2 /* TransformersAPIConfig.swift in Sources */,
+				02F3C7AA21AB2E3200883A06 /* TransformerView.swift in Sources */,
 				0208CF1821AAD344008977C2 /* UserDefaults.swift in Sources */,
 				02F3C7A721AB26AC00883A06 /* TransformersView.swift in Sources */,
+				0241D19321BE05100096CB04 /* TransformerViewController.swift in Sources */,
 				0268821721A8D3A100676446 /* AllSparkLoaderViewController.swift in Sources */,
 				0268821521A8D3A100676446 /* AppDelegate.swift in Sources */,
 				0268823F21A9B68300676446 /* URLRequest+Resource.swift in Sources */,
@@ -462,7 +588,9 @@
 		};
 		0268822F21A8D3A300676446 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E00E90E5E38BE85C48807BFD /* Pods-AutoCepticons.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HD5D5529VJ;
@@ -480,7 +608,9 @@
 		};
 		0268823021A8D3A300676446 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20655965B1E3A7A1B47B8714 /* Pods-AutoCepticons.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HD5D5529VJ;
@@ -499,6 +629,7 @@
 		};
 		0268823221A8D3A300676446 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AD2D34B83B378D43672A084 /* Pods-AutoCepticonsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -520,6 +651,7 @@
 		};
 		0268823321A8D3A300676446 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E536B4DDE90932CEBE24F0E7 /* Pods-AutoCepticonsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

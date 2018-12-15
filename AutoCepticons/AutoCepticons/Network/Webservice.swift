@@ -41,6 +41,7 @@ final class Webservice: NSObject {
         self.urlSession = urlSession
     }
 
+    @discardableResult
     func load<T>(_ resource: Resource<T>,
                  completion: @escaping (Result<T, NetworkError>) -> Void) -> URLSessionDataTask {
 
@@ -62,7 +63,9 @@ final class Webservice: NSObject {
                            "Redirected to somewhere else...")
                         result = Result(.redirection)
                 case .clientError:
-                    let message = "[\(response.statusCode)]: \(HTTPURLResponse.localizedString(forStatusCode: response.statusCode))"
+                    let content = String(decoding: data, as: UTF8.self)
+                    let localizedStatusCode = HTTPURLResponse.localizedString(forStatusCode: response.statusCode)
+                    let message = "[\(response.statusCode)]: \(localizedStatusCode) -> \(content)"
                     os_log(OSLogType.error, log: self.log, "%{private}s", message)
                     result = Result(NetworkError.clientError(message))
                 case .serverError:

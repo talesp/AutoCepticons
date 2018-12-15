@@ -18,6 +18,7 @@ class TransformersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "AutoBots or Decepticon?"
     }
 
 }
