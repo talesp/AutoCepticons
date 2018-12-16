@@ -14,48 +14,16 @@ class TransformerView: UIView {
 
     private var transformer: Transformer?
 
-    private func label(title: String) -> UILabel {
-        let view = UILabel(frame: .zero)
-        view.font = UIFont.preferredFont(forTextStyle: .title2)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        view.text = title
-        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        view.setContentCompressionResistancePriority(.required, for: .horizontal)
-        return view
-    }
+    private var viewFactory = ViewFactory()
 
-    private func textField(title: String?, isAsciiCapable: Bool = false) -> UITextField {
-        let view = UITextField(frame: .zero)
-        view.font = UIFont.preferredFont(forTextStyle: .title3)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = title ?? ""
-        view.borderStyle = .roundedRect
-        view.delegate = self
-
+    private lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar(frame: .zero)
         toolbar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
                          UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard(sender:)))]
         toolbar.barStyle = .default
         toolbar.sizeToFit()
-        view.inputAccessoryView = toolbar
-        view.returnKeyType = .next
-        if isAsciiCapable {
-            view.keyboardType = .asciiCapable
-        }
-        else {
-            view.keyboardType = .numberPad
-        }
-        return view
-    }
-
-    private func stackView(with titleLabel: UILabel, valueLabel: UITextField) -> UIStackView {
-        let view = UIStackView(arrangedSubviews: [ titleLabel, valueLabel ])
-        view.axis = .horizontal
-        view.spacing = 4
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }
+        return toolbar
+    }()
 
     private lazy var iconImageView: UIImageView = {
         let view = UIImageView(frame: .zero)
@@ -72,19 +40,19 @@ class TransformerView: UIView {
                                                                                  constant: -(2 * self.layoutMargins.top))
 
     private lazy var nameLabel: UILabel = {
-        return label(title: "Name")
+        return self.viewFactory.label(title: "Name")
     }()
 
     private lazy var nameTextField: UITextField = {
-        return textField(title: self.transformer?.name, isAsciiCapable: true)
+        return self.viewFactory.textField(title: self.transformer?.name, delegate: self, toolbar: self.toolbar, isAsciiCapable: true)
     }()
 
     private lazy var nameStackView: UIStackView = {
-        return stackView(with: nameLabel, valueLabel: nameTextField)
+        return self.viewFactory.stackView(with: nameLabel, valueLabel: nameTextField)
     }()
 
     private lazy var teamLabel: UILabel = {
-        return label(title: "Team")
+        return self.viewFactory.label(title: "Team")
     }()
 
     private lazy var teamSwitch: UISwitch = {
@@ -126,99 +94,99 @@ class TransformerView: UIView {
     }()
 
     private lazy var strengthLabel: UILabel = {
-        return label(title: "Strength")
+        return self.viewFactory.label(title: "Strength")
     }()
 
     private lazy var strengthTextField: UITextField = {
-        return textField(title: self.transformer?.strength)
+        return self.viewFactory.textField(title: self.transformer?.strength, delegate: self, toolbar: self.toolbar)
     }()
 
     private lazy var strengthStackView: UIStackView = {
-        return stackView(with: strengthLabel, valueLabel: strengthTextField)
+        return self.viewFactory.stackView(with: strengthLabel, valueLabel: strengthTextField)
     }()
 
     private lazy var intelligenceLabel: UILabel = {
-        return label(title: "Intelligence")
+        return self.viewFactory.label(title: "Intelligence")
     }()
 
     private lazy var intelligenceTextField: UITextField = {
-        return textField(title: self.transformer?.intelligence)
+        return self.viewFactory.textField(title: self.transformer?.intelligence, delegate: self, toolbar: self.toolbar)
     }()
 
     private lazy var intelligenceStackView: UIStackView = {
-        return stackView(with: intelligenceLabel, valueLabel: intelligenceTextField)
+        return self.viewFactory.stackView(with: intelligenceLabel, valueLabel: intelligenceTextField)
     }()
 
     private lazy var speedLabel: UILabel = {
-        return label(title: "Speed")
+        return self.viewFactory.label(title: "Speed")
     }()
 
     private lazy var speedTextField: UITextField = {
-        return textField(title: self.transformer?.speed)
+        return self.viewFactory.textField(title: self.transformer?.speed, delegate: self, toolbar: self.toolbar)
     }()
 
     private lazy var speedStackView: UIStackView = {
-        return stackView(with: speedLabel, valueLabel: speedTextField)
+        return self.viewFactory.stackView(with: speedLabel, valueLabel: speedTextField)
     }()
 
     private lazy var enduranceLabel: UILabel = {
-        return label(title: "Endurance")
+        return self.viewFactory.label(title: "Endurance")
     }()
 
     private lazy var enduranceTextField: UITextField = {
-        return textField(title: self.transformer?.endurance)
+        return self.viewFactory.textField(title: self.transformer?.endurance, delegate: self, toolbar: self.toolbar)
     }()
 
     private lazy var enduranceStackView: UIStackView = {
-        return stackView(with: enduranceLabel, valueLabel: enduranceTextField)
+        return self.viewFactory.stackView(with: enduranceLabel, valueLabel: enduranceTextField)
     }()
 
     private lazy var rankLabel: UILabel = {
-        return label(title: "Rank")
+        return self.viewFactory.label(title: "Rank")
     }()
 
     private lazy var rankTextField: UITextField = {
-        return textField(title: self.transformer?.rank)
+        return self.viewFactory.textField(title: self.transformer?.rank, delegate: self, toolbar: self.toolbar)
     }()
 
     private lazy var rankStackView: UIStackView = {
-        return stackView(with: rankLabel, valueLabel: rankTextField)
+        return self.viewFactory.stackView(with: rankLabel, valueLabel: rankTextField)
     }()
 
     private lazy var courageLabel: UILabel = {
-        return label(title: "Courage")
+        return self.viewFactory.label(title: "Courage")
     }()
 
     private lazy var courageTextField: UITextField = {
-        return textField(title: self.transformer?.courage)
+        return self.viewFactory.textField(title: self.transformer?.courage, delegate: self, toolbar: self.toolbar)
     }()
 
     private lazy var courageStackView: UIStackView = {
-        return stackView(with: courageLabel, valueLabel: courageTextField)
+        return self.viewFactory.stackView(with: courageLabel, valueLabel: courageTextField)
     }()
 
     private lazy var firepowerLabel: UILabel = {
-        return label(title: "Firepower")
+        return self.viewFactory.label(title: "Firepower")
     }()
 
     private lazy var firepowerTextField: UITextField = {
-        return textField(title: self.transformer?.firepower)
+        return self.viewFactory.textField(title: self.transformer?.firepower, delegate: self, toolbar: self.toolbar)
     }()
 
     private lazy var firepowerStackView: UIStackView = {
-        return stackView(with: firepowerLabel, valueLabel: firepowerTextField)
+        return self.viewFactory.stackView(with: firepowerLabel, valueLabel: firepowerTextField)
     }()
 
     private lazy var skillLabel: UILabel = {
-        return label(title: "Skill")
+        return self.viewFactory.label(title: "Skill")
     }()
 
     private lazy var skillTextField: UITextField = {
-        return textField(title: self.transformer?.skill)
+        return self.viewFactory.textField(title: self.transformer?.skill, delegate: self, toolbar: self.toolbar)
     }()
 
     private lazy var skillStackView: UIStackView = {
-        return stackView(with: skillLabel, valueLabel: skillTextField)
+        return self.viewFactory.stackView(with: skillLabel, valueLabel: skillTextField)
     }()
 
     private lazy var formStackView: UIStackView = {

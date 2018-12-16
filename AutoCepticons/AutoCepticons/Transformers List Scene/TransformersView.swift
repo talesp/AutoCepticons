@@ -9,7 +9,8 @@
 import UIKit
 
 class TransformersView: UIView {
-    private lazy var tableView: UITableView = {
+
+    private(set) lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

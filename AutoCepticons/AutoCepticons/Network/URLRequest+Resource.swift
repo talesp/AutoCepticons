@@ -11,8 +11,7 @@ import Foundation
 extension URLRequest {
     init<A>(resource: Resource<A>) {
         self.init(url: resource.url)
-//        httpMethod = resource.method.method
-        httpMethod = "POST"
+        httpMethod = resource.method.method
         for header in resource.headers {
             switch header {
             case .accept(let accept):

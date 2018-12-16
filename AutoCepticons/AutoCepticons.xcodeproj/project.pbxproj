@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0207702D21C53E6F000F30FC /* TransformerAttributesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207702C21C53E6F000F30FC /* TransformerAttributesView.swift */; };
+		0207703021C545CA000F30FC /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207702F21C545CA000F30FC /* ViewFactory.swift */; };
+		0207703221C59539000F30FC /* TransformersListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207703121C59539000F30FC /* TransformersListTableViewCell.swift */; };
+		0207703421C59ECA000F30FC /* TransformersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207703321C59ECA000F30FC /* TransformersDataSource.swift */; };
+		0207703721C5A61C000F30FC /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207703621C5A61C000F30FC /* Reusable.swift */; };
 		0208CF0D21AA344C008977C2 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF0C21AA344C008977C2 /* Transformer.swift */; };
 		0208CF1021AA3471008977C2 /* TransformersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF0F21AA3471008977C2 /* TransformersList.swift */; };
 		0208CF1221AA353D008977C2 /* TransformersAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1121AA353D008977C2 /* TransformersAPIConfig.swift */; };
@@ -48,6 +53,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0207702C21C53E6F000F30FC /* TransformerAttributesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerAttributesView.swift; sourceTree = "<group>"; };
+		0207702F21C545CA000F30FC /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
+		0207703121C59539000F30FC /* TransformersListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersListTableViewCell.swift; sourceTree = "<group>"; };
+		0207703321C59ECA000F30FC /* TransformersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersDataSource.swift; sourceTree = "<group>"; };
+		0207703621C5A61C000F30FC /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		0208CF0C21AA344C008977C2 /* Transformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformer.swift; sourceTree = "<group>"; };
 		0208CF0F21AA3471008977C2 /* TransformersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersList.swift; sourceTree = "<group>"; };
 		0208CF1121AA353D008977C2 /* TransformersAPIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersAPIConfig.swift; sourceTree = "<group>"; };
@@ -106,6 +116,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0207702E21C545B7000F30FC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0207702F21C545CA000F30FC /* ViewFactory.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0207703521C5A605000F30FC /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				0207703621C5A61C000F30FC /* Reusable.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
 		0208CF0E21AA3460008977C2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +166,8 @@
 		0268821321A8D3A100676446 /* AutoCepticons */ = {
 			isa = PBXGroup;
 			children = (
+				0207703521C5A605000F30FC /* Reusable */,
+				0207702E21C545B7000F30FC /* View */,
 				02F3C7A821AB2E1200883A06 /* Transformer Scene */,
 				02F3C7A321AB266D00883A06 /* Transformers List Scene */,
 				0208CF0E21AA3460008977C2 /* Model */,
@@ -203,6 +231,9 @@
 			children = (
 				02F3C7A421AB269500883A06 /* TransformersViewController.swift */,
 				02F3C7A621AB26AC00883A06 /* TransformersView.swift */,
+				0207702C21C53E6F000F30FC /* TransformerAttributesView.swift */,
+				0207703121C59539000F30FC /* TransformersListTableViewCell.swift */,
+				0207703321C59ECA000F30FC /* TransformersDataSource.swift */,
 			);
 			path = "Transformers List Scene";
 			sourceTree = "<group>";
@@ -422,6 +453,7 @@
 				0208CF1C21AB09C0008977C2 /* StringDecoder.swift in Sources */,
 				0268823B21A9B61F00676446 /* HTTPStatusCode.swift in Sources */,
 				0268823921A9B56400676446 /* HTTPMethod.swift in Sources */,
+				0207703421C59ECA000F30FC /* TransformersDataSource.swift in Sources */,
 				0208CF1A21AB096A008977C2 /* StringEncoder.swift in Sources */,
 				0268824121A9B6A600676446 /* Webservice.swift in Sources */,
 				0268823621A9B51E00676446 /* Optionals.swift in Sources */,
@@ -431,12 +463,16 @@
 				0208CF1621AA37C9008977C2 /* Transformers+Resource.swift in Sources */,
 				0208CF1221AA353D008977C2 /* TransformersAPIConfig.swift in Sources */,
 				02F3C7AA21AB2E3200883A06 /* TransformerView.swift in Sources */,
+				0207703221C59539000F30FC /* TransformersListTableViewCell.swift in Sources */,
 				0208CF1821AAD344008977C2 /* UserDefaults.swift in Sources */,
+				0207703721C5A61C000F30FC /* Reusable.swift in Sources */,
 				02F3C7A721AB26AC00883A06 /* TransformersView.swift in Sources */,
 				0241D19321BE05100096CB04 /* TransformerViewController.swift in Sources */,
 				0268821721A8D3A100676446 /* AllSparkLoaderViewController.swift in Sources */,
 				0268821521A8D3A100676446 /* AppDelegate.swift in Sources */,
+				0207703021C545CA000F30FC /* ViewFactory.swift in Sources */,
 				0268823F21A9B68300676446 /* URLRequest+Resource.swift in Sources */,
+				0207702D21C53E6F000F30FC /* TransformerAttributesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
