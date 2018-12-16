@@ -22,8 +22,11 @@ extension URLRequest {
                 setValue(contentType, forHTTPHeaderField: "Content-Type")
             }
         }
-        if case let .post(data) = resource.method {
+        switch resource.method {
+        case .post(let data), .put(let data):
             httpBody = data
+        default:
+            break
         }
     }
 }

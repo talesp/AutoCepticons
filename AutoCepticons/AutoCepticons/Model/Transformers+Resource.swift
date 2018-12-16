@@ -24,7 +24,8 @@ extension Transformer {
 
     static func get(id: String) -> Resource<Transformer> {
         let url = Transformer.resourceBaseURL.appendingPathComponent(id)
-        return Resource(url: url, headers: [])
+        let headers: [HTTPHeader] = [.contentType("application/json"), .authorization("Bearer \(UserDefaults.allSpark!)")]
+        return Resource(url: url, headers: headers)
     }
 
     func post() -> Resource<Transformer> {
@@ -33,13 +34,15 @@ extension Transformer {
     }
 
     func put() -> Resource<Transformer> {
+        let headers: [HTTPHeader] = [.contentType("application/json"), .authorization("Bearer \(UserDefaults.allSpark!)")]
         let url = Transformer.resourceBaseURL
-        return Resource(url: url, method: .put(self), headers: [])
+        return Resource(url: url, method: .put(self), headers: headers)
     }
 
     func delete() -> Resource<TransformersList> {
         guard let id = self.id else { fatalError("impossible to remove this Transformer")}
         let url = Transformer.resourceBaseURL.appendingPathComponent(id)
-        return Resource(url: url, method: .delete, headers: [])
+        let headers: [HTTPHeader] = [.contentType("application/json"), .authorization("Bearer \(UserDefaults.allSpark!)")]
+        return Resource(url: url, method: .delete, headers: headers)
     }
 }

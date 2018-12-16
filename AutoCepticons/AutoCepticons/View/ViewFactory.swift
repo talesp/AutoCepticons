@@ -29,7 +29,6 @@ class ViewFactory {
         let view = UITextField(frame: .zero)
         view.font = UIFont.preferredFont(forTextStyle: .title3)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = title ?? ""
         if isEditable {
             view.borderStyle = .roundedRect
             view.isEnabled = true
@@ -48,6 +47,7 @@ class ViewFactory {
         else {
             view.keyboardType = .numberPad
         }
+        view.text = title ?? ""
         return view
     }
 

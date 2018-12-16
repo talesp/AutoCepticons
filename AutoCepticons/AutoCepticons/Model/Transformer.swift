@@ -10,17 +10,17 @@ import Foundation
 
 class Transformer: Codable {
     let id: String?
-    let name: String
-    let team: String
-    let strength: String
-    let intelligence: String
-    let speed: String
-    let endurance: String
-    let rank: String
-    let courage: String
-    let firepower: String
-    let skill: String
-    let teamIconURLString: String?
+    var name: String
+    var team: String
+    var strength: String
+    var intelligence: String
+    var speed: String
+    var endurance: String
+    var rank: String
+    var courage: String
+    var firepower: String
+    var skill: String
+    var teamIconURLString: String?
     var teamIconURL: URL? {
         return URL(string: teamIconURLString ?? "")
     }

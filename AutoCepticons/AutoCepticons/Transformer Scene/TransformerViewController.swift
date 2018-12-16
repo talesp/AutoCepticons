@@ -10,10 +10,11 @@ import UIKit
 
 class TransformerViewController: UIViewController {
 
-    private let transformer: Transformer? = nil
+    private let transformer: Transformer?
     private let transformerView: TransformerView
 
     init(transformer: Transformer?) {
+        self.transformer = transformer
         self.transformerView = TransformerView(model: transformer)
         super.init(nibName: nil, bundle: nil)
     }
@@ -23,7 +24,7 @@ class TransformerViewController: UIViewController {
     }
 
     override func loadView() {
-        self.view = TransformerView(model: transformer)
+        self.view = self.transformerView
     }
 
     override func viewWillAppear(_ animated: Bool) {

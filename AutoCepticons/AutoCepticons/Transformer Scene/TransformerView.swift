@@ -29,6 +29,21 @@ class TransformerView: UIView {
         let view = UIImageView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
+
+        guard let url = self.transformer?.teamIconURL else { return view }
+        URLSession(configuration: .default).dataTask(with: url, completionHandler: { data, response, error in
+            guard let data = data else { return }
+            let image = UIImage(data: data)
+            DispatchQueue.main.async {
+                guard let image = image else { return }
+
+                view.image = image
+                let multiplier = image.size.height / image.size.width
+                view.heightAnchor.constraint(equalTo: self.iconImageView.widthAnchor,
+                                             multiplier: multiplier).isActive = true
+            }
+        }).resume()
+
         return view
     }()
 
@@ -231,7 +246,8 @@ class TransformerView: UIView {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         let vertical = UITraitCollection(verticalSizeClass: .regular)
-        UIView.animate(withDuration: 0.3) { [weak self] in
+        guard self.iconImageView.image != nil else { return }
+        UIView.animate(withDuration: 0.25) { [weak self] in
             guard let self = self else { return }
             let isVertical = self.traitCollection.containsTraits(in: vertical)
             self.stackView.axis = isVertical ? .vertical : .horizontal
@@ -270,24 +286,48 @@ class TransformerView: UIView {
                 return
         }
 
-        let transformer = self.transformer ?? Transformer(name: name,
-                                                          team: teamSwitch.isOn ? "A" : "D",
-                                                          strength: strenght,
-                                                          intelligence: inteligence,
-                                                          speed: speed,
-                                                          endurance: endurance,
-                                                          rank: rank,
-                                                          courage: courage,
-                                                          firepower: firepower,
-                                                          skill: skill)
-        webservice.load(transformer.post()) { result in
+
+        let transformer: Transformer
+        if let transf = self.transformer {
+            transf.name = name
+            transf.team = self.teamSwitch.isOn ? "A" : "D"
+            transf.strength = strenght
+            transf.intelligence = inteligence
+            transf.speed = speed
+            transf.endurance = endurance
+            transf.rank = rank
+            transf.courage = courage
+            transf.firepower = firepower
+            transf.skill = skill
+            transformer = transf
+
+        } else {
+            transformer = Transformer(name: name,
+                                      team: teamSwitch.isOn ? "A" : "D",
+                                      strength: strenght,
+                                      intelligence: inteligence,
+                                      speed: speed,
+                                      endurance: endurance,
+                                      rank: rank,
+                                      courage: courage,
+                                      firepower: firepower,
+                                      skill: skill)
+        }
+        let resource: Resource<Transformer>
+        if transformer.id != nil {
+            resource = transformer.put()
+        }
+        else {
+            resource = transformer.post()
+        }
+        webservice.load(resource) { result in
             switch result {
             case .success(let transformer):
                 guard let url = transformer.teamIconURL else {
                     print("fuem")
                     return
                 }
-                URLSession(configuration: .default) .dataTask(with: url, completionHandler: { data, response, error in
+                URLSession(configuration: .default).dataTask(with: url, completionHandler: { data, response, error in
                     guard let data = data else { return }
                     let image = UIImage(data: data)
                     DispatchQueue.main.async {
@@ -298,6 +338,7 @@ class TransformerView: UIView {
                         self.iconImageView.heightAnchor.constraint(equalTo: self.iconImageView.widthAnchor,
                                                                    multiplier: multiplier).isActive = true
                         UIView.animate(withDuration: 0.25, animations: {
+                            self.iconImageView.image = image
                             self.layoutIfNeeded()
                         })
                     }
