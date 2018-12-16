@@ -7,19 +7,23 @@
 //
 
 import Foundation
+enum TransformerTeam: String, Codable {
+    case autobot = "A"
+    case decepticon = "D"
+}
 
 class Transformer: Codable {
     let id: String?
     var name: String
-    var team: String
-    var strength: String
-    var intelligence: String
-    var speed: String
-    var endurance: String
-    var rank: String
-    var courage: String
-    var firepower: String
-    var skill: String
+    var team: TransformerTeam
+    var strength: Int
+    var intelligence: Int
+    var speed: Int
+    var endurance: Int
+    var rank: Int
+    var courage: Int
+    var firepower: Int
+    var skill: Int
     var teamIconURLString: String?
     var teamIconURL: URL? {
         return URL(string: teamIconURLString ?? "")
@@ -42,15 +46,15 @@ class Transformer: Codable {
 
     init(id: String? = nil,
          name: String,
-         team: String,
-         strength: String,
-         intelligence: String,
-         speed: String,
-         endurance: String,
-         rank: String,
-         courage: String,
-         firepower: String,
-         skill: String,
+         team: TransformerTeam,
+         strength: Int,
+         intelligence: Int,
+         speed: Int,
+         endurance: Int,
+         rank: Int,
+         courage: Int,
+         firepower: Int,
+         skill: Int,
          teamIconURLString: String? = nil) {
         self.courage = courage
         self.endurance = endurance
@@ -64,5 +68,9 @@ class Transformer: Codable {
         self.strength = strength
         self.team = team
         self.teamIconURLString = teamIconURLString
+    }
+
+    var overallRating: Int {
+        return strength + intelligence + speed + endurance + rank + courage + firepower + skill
     }
 }

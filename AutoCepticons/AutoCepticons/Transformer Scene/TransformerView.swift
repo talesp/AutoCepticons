@@ -275,14 +275,14 @@ class TransformerView: UIView {
     @objc
     func save(sender: Any) {
         guard let name = nameTextField.text,
-            let strenght = strengthTextField.text,
-            let inteligence = intelligenceTextField.text,
-            let speed = speedTextField.text,
-            let endurance = enduranceTextField.text,
-            let rank = rankTextField.text,
-            let courage = courageTextField.text,
-            let firepower = firepowerTextField.text,
-            let skill = skillTextField.text else {
+            let strenght = Int(strengthTextField.text ?? ""),
+            let inteligence = Int(intelligenceTextField.text ?? ""),
+            let speed = Int(speedTextField.text ?? ""),
+            let endurance = Int(enduranceTextField.text ?? ""),
+            let rank = Int(rankTextField.text ?? ""),
+            let courage = Int(courageTextField.text ?? ""),
+            let firepower = Int(firepowerTextField.text ?? ""),
+            let skill = Int(skillTextField.text ?? "") else {
                 return
         }
 
@@ -290,7 +290,7 @@ class TransformerView: UIView {
         let transformer: Transformer
         if let transf = self.transformer {
             transf.name = name
-            transf.team = self.teamSwitch.isOn ? "A" : "D"
+            transf.team = self.teamSwitch.isOn ? .autobot : .decepticon
             transf.strength = strenght
             transf.intelligence = inteligence
             transf.speed = speed
@@ -303,7 +303,7 @@ class TransformerView: UIView {
 
         } else {
             transformer = Transformer(name: name,
-                                      team: teamSwitch.isOn ? "A" : "D",
+                                      team: teamSwitch.isOn ? .autobot : .decepticon,
                                       strength: strenght,
                                       intelligence: inteligence,
                                       speed: speed,
@@ -443,8 +443,15 @@ extension TransformerView: UITextFieldDelegate {
                    replacementString string: String) -> Bool {
         guard textField != nameTextField else { return true }
 
-        let charset = CharacterSet.decimalDigits
-        return string == "" || string.rangeOfCharacter(from: charset) != nil
+        if string == "" {
+            return true
+        }
+
+        guard let newString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string),
+            let newValue = Int(newString) else {
+            return false
+        }
+        return (newValue <= 10 && newString != "0")
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

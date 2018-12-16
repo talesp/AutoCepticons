@@ -19,13 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow()
 
         if UserDefaults.allSpark != nil {
-            let viewController = TransformersViewController()
-
-            rootViewController = UINavigationController(rootViewController: viewController)
-            let buttonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                             target: self,
-                                             action: #selector(createTransformer(sender:)))
-            viewController.navigationItem.setRightBarButton(buttonItem, animated: true)
+            rootViewController = UINavigationController(rootViewController: TransformersViewController())
+            
         }
         else {
             rootViewController = UINavigationController(rootViewController: AllSparkLoaderViewController())
@@ -37,8 +32,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    @objc
-    func createTransformer(sender: Any) {
-        rootViewController?.pushViewController(TransformerViewController(transformer: nil), animated: true)
-    }
 }

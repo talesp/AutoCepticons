@@ -188,14 +188,14 @@ class TransformerAttributesView: UIView {
     }
 
     func setup(transformer: Transformer) {
-        self.strengthTextField.text = transformer.strength
-        self.intelligenceTextField.text = transformer.intelligence
-        self.speedTextField.text = transformer.speed
-        self.enduranceTextField.text = transformer.endurance
-        self.rankTextField.text = transformer.rank
-        self.courageTextField.text = transformer.rank
-        self.firepowerTextField.text = transformer.firepower
-        self.skillTextField.text = transformer.skill
+        self.strengthTextField.text = "\(transformer.strength)"
+        self.intelligenceTextField.text = "\(transformer.intelligence)"
+        self.speedTextField.text = "\(transformer.speed)"
+        self.enduranceTextField.text = "\(transformer.endurance)"
+        self.rankTextField.text = "\(transformer.rank)"
+        self.courageTextField.text = "\(transformer.courage)"
+        self.firepowerTextField.text = "\(transformer.firepower)"
+        self.skillTextField.text = "\(transformer.skill)"
 
     }
 }

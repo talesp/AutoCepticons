@@ -37,11 +37,6 @@ class AllSparkLoaderViewController: UIViewController {
                 UserDefaults.allSpark = allspark
                 let viewController = TransformersViewController()
                 viewController.modalTransitionStyle = .crossDissolve
-                let buttonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                 target: self,
-                                                 action: #selector(self.createTransformer(sender:)))
-                viewController.navigationItem.setRightBarButton(buttonItem, animated: true)
-                self.navigationController?.setToolbarHidden(false, animated: true)
                 DispatchQueue.main.async {
                     self.show(viewController, sender: self)
                 }
@@ -49,6 +44,12 @@ class AllSparkLoaderViewController: UIViewController {
             case .failure(let error):
                 os_log(OSLogType.debug,
                        log: self.log, "error getting allspark: %{private}@", error.localizedDescription)
+                let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alertController.addAction(action)
+                DispatchQueue.main.async {
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
         }
 
@@ -58,11 +59,6 @@ class AllSparkLoaderViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.backgroundColor = .cyan
         }
-    }
-
-    @objc
-    func createTransformer(sender: Any) {
-        self.navigationController?.pushViewController(TransformerViewController(transformer: nil), animated: true)
     }
 
 }

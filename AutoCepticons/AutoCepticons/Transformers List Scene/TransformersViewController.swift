@@ -37,14 +37,107 @@ class TransformersViewController: UIViewController {
         super.viewDidLoad()
         self.title = "AutoBots or Decepticon?"
 
-        self.webservice.load(TransformersList.resource()) { result in
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        let rightButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                         target: self,
+                                         action: #selector(createTransformer(sender:)))
+        self.navigationItem.setRightBarButton(rightButtonItem, animated: true)
+
+        let leftButtonItem = UIBarButtonItem(title: "Go to War",
+                                             style: UIBarButtonItem.Style.plain,
+                                             target: self,
+                                             action: #selector(fightTransformers(sender:)))
+        self.navigationItem.setLeftBarButton(leftButtonItem, animated: true)
+        datasource.tableView?.backgroundView = datasource.transformers.count == 0 ? TransformersEmptyView() : nil
+        self.webservice.load(TransformersList.resource()) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let response):
-                self.datasource.updateDatasource(transformers: response.transformers)
+                DispatchQueue.main.async {
+                    self.datasource.updateDatasource(transformers: response.transformers)
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self.datasource.tableView?.backgroundView?.alpha = 0
+                    }, completion: { didFinished in
+                        self.datasource.tableView?.backgroundView = nil
+                    })
+                }
             case .failure(let error):
                 fatalError(error.localizedDescription)
             }
         }
     }
 
+    @objc
+    func createTransformer(sender: Any) {
+        self.show(TransformerViewController(transformer: nil), sender: self)
+    }
+
+    private func whoIsTheBravest(_ autobot: Transformer, decepticon: Transformer) -> TransformerTeam? {
+        precondition(autobot.team == .autobot, "First transformer should be an Autobot")
+        precondition(decepticon.team == .decepticon, "Second Transformer should be a Decepticon")
+
+        if autobot.courage - decepticon.courage > 4 && autobot.strength - decepticon.strength > 3 {
+            return .autobot
+        }
+        else if decepticon.courage - autobot.courage > 4 && decepticon.strength - autobot.strength > 3 {
+            return .decepticon
+        }
+
+        return nil
+    }
+
+    private func whoIsTheSkillest(_ autobot: Transformer, decepticon: Transformer) -> TransformerTeam? {
+        if autobot.skill - decepticon.skill >= 3 {
+            return .autobot
+        }
+        else if decepticon.skill - autobot.skill >= 3 {
+            return .decepticon
+        }
+
+        return nil
+
+    }
+
+
+    @objc
+    func fightTransformers(sender: Any) {
+        let transformers = self.datasource.transformers
+        let autobots = transformers.filter({ $0.team == .autobot}).sorted(by: { $0.rank > $1.rank })
+        let decepticons = transformers.filter({ $0.team == .decepticon }).sorted(by: { $0.rank > $1.rank })
+
+        let fighters = zip(autobots, decepticons)
+
+        let winners: [TransformerTeam] = fighters.compactMap { duelings in
+            let (autobot, decepticon) = duelings
+
+            if autobot.name == "Optimus Prime" || autobot.name == "Predaking" {
+                return .autobot
+            }
+
+            if decepticon.name == "Optimus Prime" || decepticon.name == "Predaking" {
+                return .decepticon
+            }
+
+            if let bravest = whoIsTheBravest(autobot, decepticon: decepticon) {
+                return bravest
+            }
+
+            if let skillest = whoIsTheSkillest(autobot, decepticon: decepticon) {
+                return skillest
+            }
+
+            if autobot.overallRating > decepticon.overallRating {
+                return .autobot
+            }
+            else if decepticon.overallRating > autobot.overallRating {
+                return .decepticon
+            }
+
+            return nil
+        }
+
+
+//        let controller = UIAlertController(title: "Transformers War",
+//                                           message: <#T##String?#>, preferredStyle: <#T##UIAlertController.Style#>)
+    }
 }

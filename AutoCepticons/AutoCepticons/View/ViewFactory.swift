@@ -21,6 +21,16 @@ class ViewFactory {
         return view
     }
 
+    func textField(title: Int?,
+                   delegate: UITextFieldDelegate?,
+                   toolbar: UIToolbar?,
+                   isAsciiCapable: Bool = false,
+                   isEditable: Bool = true) -> UITextField {
+
+        let title = title != nil ? "\(title!)" : ""
+        return textField(title: title, delegate: delegate, toolbar: toolbar, isAsciiCapable: isAsciiCapable, isEditable: isEditable)
+    }
+
     func textField(title: String?,
                    delegate: UITextFieldDelegate?,
                    toolbar: UIToolbar?,
