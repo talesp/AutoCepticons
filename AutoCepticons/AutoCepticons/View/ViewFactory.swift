@@ -32,9 +32,11 @@ class ViewFactory {
         view.text = title ?? ""
         if isEditable {
             view.borderStyle = .roundedRect
+            view.isEnabled = true
         }
         else {
             view.borderStyle = .none
+            view.isEnabled = false
         }
         view.delegate = delegate
 

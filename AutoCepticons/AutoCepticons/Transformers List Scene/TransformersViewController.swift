@@ -16,8 +16,13 @@ class TransformersViewController: UIViewController {
 
     init(webservice: Webservice = Webservice(urlSession: URLSession(configuration: .default))) {
         self.webservice = webservice
-        datasource = TransformersDataSource(tableView: self.transformersView.tableView)
+        datasource = TransformersDataSource(tableView: self.transformersView.tableView) 
         super.init(nibName: nil, bundle: nil)
+
+        datasource.didSelect = { [weak self] transformer in
+            guard let self = self else { return }
+            self.show(TransformerViewController(transformer: transformer), sender: self)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

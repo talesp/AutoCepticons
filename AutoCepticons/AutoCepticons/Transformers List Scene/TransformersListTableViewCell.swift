@@ -14,6 +14,7 @@ class TransformersListTableViewCell: UITableViewCell, Reusable {
     private lazy var iconImageView: UIImageView = {
         let view = UIImageView(image: nil)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
         return view
     }()
 
@@ -68,7 +69,13 @@ class TransformersListTableViewCell: UITableViewCell, Reusable {
         }
         dataTask = session.dataTask(with: url) { data, response, error in
             guard let data = data else { return }
-            self.iconImageView.image = UIImage(data: data)
+
+            let image = UIImage(data: data)
+            DispatchQueue.main.async {
+                guard let image = image else { return }
+
+                self.iconImageView.image = image
+            }
         }
         self.dataTask?.resume()
 
@@ -94,7 +101,7 @@ extension TransformersListTableViewCell: ViewConfiguration {
             self.outterStackView.trailingAnchor.constraint(equalToSystemSpacingAfter: self.contentView.trailingAnchor, multiplier: 1.0),
             ])
         NSLayoutConstraint.activate([
-            self.iconImageView.widthAnchor.constraint(equalTo: self.iconImageView.heightAnchor, multiplier: 475.0/500),
+            self.iconImageView.widthAnchor.constraint(equalTo: self.iconImageView.heightAnchor, multiplier: 500.0/475.0),
             self.iconImageView.heightAnchor.constraint(equalToConstant: 140.0)
             ])
     }

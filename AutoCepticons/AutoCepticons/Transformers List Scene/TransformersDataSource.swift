@@ -8,7 +8,9 @@
 
 import UIKit
 
-class TransformersDataSource: NSObject, UITableViewDataSource {
+class TransformersDataSource: NSObject {
+
+    var didSelect: ((Transformer) -> Void)?
 
     private(set) var transformers: [Transformer] = []
 
@@ -18,6 +20,7 @@ class TransformersDataSource: NSObject, UITableViewDataSource {
         self.tableView = tableView
         super.init()
         self.tableView?.dataSource = self
+        self.tableView?.delegate = self
         self.tableView?.estimatedRowHeight = 160
         self.tableView?.registerReusable(cellType: TransformersListTableViewCell.self)
     }
@@ -29,6 +32,9 @@ class TransformersDataSource: NSObject, UITableViewDataSource {
         }
     }
 
+}
+
+extension TransformersDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.transformers.count
     }
@@ -39,4 +45,12 @@ class TransformersDataSource: NSObject, UITableViewDataSource {
         return cell
     }
 
+}
+
+extension TransformersDataSource: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let transformer = self.transformers[indexPath.row]
+        self.didSelect?(transformer)
+    }
 }

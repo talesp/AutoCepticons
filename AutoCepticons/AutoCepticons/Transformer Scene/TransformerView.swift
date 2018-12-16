@@ -28,6 +28,7 @@ class TransformerView: UIView {
     private lazy var iconImageView: UIImageView = {
         let view = UIImageView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
         return view
     }()
 
