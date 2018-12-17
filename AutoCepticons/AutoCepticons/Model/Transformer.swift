@@ -71,6 +71,6 @@ class Transformer: Codable {
     }
 
     var overallRating: Int {
-        return strength + intelligence + speed + endurance + rank + courage + firepower + skill
+        return strength + intelligence + speed + endurance + firepower
     }
 }

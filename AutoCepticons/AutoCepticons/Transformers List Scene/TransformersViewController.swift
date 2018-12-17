@@ -102,9 +102,33 @@ class TransformersViewController: UIViewController {
     @objc
     func fightTransformers(sender: Any) {
         let transformers = self.datasource.transformers
-        let autobots = transformers.filter({ $0.team == .autobot}).sorted(by: { $0.rank > $1.rank })
-        let decepticons = transformers.filter({ $0.team == .decepticon }).sorted(by: { $0.rank > $1.rank })
+        let autobots = transformers.filter({ $0.team == .autobot}).sorted(by: {
+            if $0.name == "Optimus Prime" || $0.name == "Predaking" {
+                return true
+            }
+            return $0.rank > $1.rank
+        })
+        let decepticons = transformers.filter({ $0.team == .decepticon }).sorted(by: {
+            if $0.name == "Optimus Prime" || $0.name == "Predaking" {
+                return true
+            }
+            return $0.rank > $1.rank
+        })
 
+        let sparedTransformers: [String]
+        let numberOfBattles: Int
+        if autobots.count > decepticons.count {
+            sparedTransformers = Array(autobots.dropFirst(decepticons.count)).map({ $0.name })
+            numberOfBattles = decepticons.count
+        }
+        else if autobots.count < decepticons.count {
+            sparedTransformers = Array(decepticons.dropFirst(autobots.count)).map({ $0.name })
+            numberOfBattles = autobots.count
+        }
+        else {
+            numberOfBattles = autobots.count
+            sparedTransformers = []
+        }
         let fighters = zip(autobots, decepticons)
 
         let winners: [TransformerTeam] = fighters.compactMap { duelings in
@@ -136,8 +160,41 @@ class TransformersViewController: UIViewController {
             return nil
         }
 
+        var message: String
 
-//        let controller = UIAlertController(title: "Transformers War",
-//                                           message: <#T##String?#>, preferredStyle: <#T##UIAlertController.Style#>)
+        if winners.count == 0 {
+            message = "Impossible to go to War. Add more Transformers"
+        }
+        else {
+            let matchesWon = winners.reduce(into: [TransformerTeam: Int]()) {
+                return $0[$1, default: 0] += 1
+            }
+
+            let noTransformerLeftMessage = "No Transformer was left behind."
+            if matchesWon[.autobot, default: 0] > matchesWon[.decepticon, default: 0] {
+                message = """
+                Number of battles: \(numberOfBattles)
+                Winner Team: Autobots: \(autobots[..<(min(autobots.count, decepticons.count))].map({ $0.name }).joined(separator: ", ")).
+                \(sparedTransformers.count > 0 ? "Survivors from the losing team: \(sparedTransformers.joined(separator: ", "))" : "\(noTransformerLeftMessage)")
+                """
+            }
+            else if matchesWon[.decepticon, default: 0] > matchesWon[.autobot, default: 0] {
+                message = """
+                Number of battles: \(numberOfBattles)
+                Winner Team: Decepticons: \(decepticons[..<(min(autobots.count, decepticons.count))].map({ $0.name }).joined(separator: ", ")).
+                \(sparedTransformers.count > 0 ? "Survivors from the losing team: \(sparedTransformers.joined(separator: ", "))" : "\(noTransformerLeftMessage)")
+                """
+            }
+            else {
+                message = "It's a draw. All Transformers destroyed."
+            }
+
+        }
+
+        let controller = UIAlertController(title: "Transformers War",
+                                           message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel)
+        controller.addAction(action)
+        self.present(controller, animated: true)
     }
 }
