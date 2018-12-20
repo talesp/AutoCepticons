@@ -25,24 +25,32 @@ class TransformerView: UIView {
         return toolbar
     }()
 
-    private lazy var iconImageView: UIImageView = {
+    private(set) lazy var iconImageView: UIImageView = {
         let view = UIImageView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
 
-        guard let url = self.transformer?.teamIconURL else { return view }
-        URLSession(configuration: .default).dataTask(with: url, completionHandler: { data, response, error in
-            guard let data = data else { return }
-            let image = UIImage(data: data)
-            DispatchQueue.main.async {
-                guard let image = image else { return }
+        guard let data = self.transformer?.teamIcon, let image = UIImage(data: data) else {
+            return view
+        }
+        view.image = image
+        let multiplier = image.size.height / image.size.width
+        view.heightAnchor.constraint(equalTo: view.widthAnchor,
+                                     multiplier: multiplier).isActive = true
 
-                view.image = image
-                let multiplier = image.size.height / image.size.width
-                view.heightAnchor.constraint(equalTo: self.iconImageView.widthAnchor,
-                                             multiplier: multiplier).isActive = true
-            }
-        }).resume()
+//        guard let url = self.transformer?.teamIconURL else { return view }
+//        URLSession(configuration: .default).dataTask(with: url, completionHandler: { data, response, error in
+//            guard let data = data else { return }
+//            let image = UIImage(data: data)
+//            DispatchQueue.main.async {
+//                guard let image = image else { return }
+//
+//                view.image = image
+//                let multiplier = image.size.height / image.size.width
+//                view.heightAnchor.constraint(equalTo: self.iconImageView.widthAnchor,
+//                                             multiplier: multiplier).isActive = true
+//            }
+//        }).resume()
 
         return view
     }()
@@ -275,78 +283,44 @@ class TransformerView: UIView {
     @objc
     func save(sender: Any) {
         guard let name = nameTextField.text,
-            let strenght = Int(strengthTextField.text ?? ""),
-            let inteligence = Int(intelligenceTextField.text ?? ""),
-            let speed = Int(speedTextField.text ?? ""),
-            let endurance = Int(enduranceTextField.text ?? ""),
-            let rank = Int(rankTextField.text ?? ""),
-            let courage = Int(courageTextField.text ?? ""),
-            let firepower = Int(firepowerTextField.text ?? ""),
-            let skill = Int(skillTextField.text ?? "") else {
+            let strength = Int32(strengthTextField.text ?? ""),
+            let intelligence = Int32(intelligenceTextField.text ?? ""),
+            let speed = Int32(speedTextField.text ?? ""),
+            let endurance = Int32(enduranceTextField.text ?? ""),
+            let rank = Int32(rankTextField.text ?? ""),
+            let courage = Int32(courageTextField.text ?? ""),
+            let firepower = Int32(firepowerTextField.text ?? ""),
+            let skill = Int32(skillTextField.text ?? "") else {
                 return
         }
 
+//        name: String,
+//        team: TransformerTeam,
+//        strength: Int32,
+//        intelligence: Int32,
+//        speed: Int32,
+//        endurance: Int32,
+//        rank: Int32,
+//        courage: Int32,
+//        firepower: Int32,
+//        skill: Int32
 
-        let transformer: Transformer
-        if let transf = self.transformer {
-            transf.name = name
-            transf.team = self.teamSwitch.isOn ? .autobot : .decepticon
-            transf.strength = strenght
-            transf.intelligence = inteligence
-            transf.speed = speed
-            transf.endurance = endurance
-            transf.rank = rank
-            transf.courage = courage
-            transf.firepower = firepower
-            transf.skill = skill
-            transformer = transf
 
-        } else {
-            transformer = Transformer(name: name,
-                                      team: teamSwitch.isOn ? .autobot : .decepticon,
-                                      strength: strenght,
-                                      intelligence: inteligence,
-                                      speed: speed,
-                                      endurance: endurance,
-                                      rank: rank,
-                                      courage: courage,
-                                      firepower: firepower,
-                                      skill: skill)
-        }
-        let resource: Resource<Transformer>
-        if transformer.id != nil {
-            resource = transformer.put()
-        }
-        else {
-            resource = transformer.post()
-        }
-        webservice.load(resource) { result in
-            switch result {
-            case .success(let transformer):
-                guard let url = transformer.teamIconURL else {
-                    print("fuem")
-                    return
-                }
-                URLSession(configuration: .default).dataTask(with: url, completionHandler: { data, response, error in
-                    guard let data = data else { return }
-                    let image = UIImage(data: data)
-                    DispatchQueue.main.async {
-                        guard let image = image else { return }
+        let values = TransformerAttributes(
+            name,
+            self.teamSwitch.isOn ? TransformerTeam.autobot : TransformerTeam.decepticon,
+            strength,
+            intelligence,
+            speed,
+            endurance,
+            rank,
+            courage,
+            firepower,
+            skill
+        )
 
-                        self.iconImageView.image = image
-                        let multiplier = image.size.height / image.size.width
-                        self.iconImageView.heightAnchor.constraint(equalTo: self.iconImageView.widthAnchor,
-                                                                   multiplier: multiplier).isActive = true
-                        UIView.animate(withDuration: 0.25, animations: {
-                            self.iconImageView.image = image
-                            self.layoutIfNeeded()
-                        })
-                    }
-                }).resume()
-            case .failure(let error):
-                dump(error)
-            }
-        }
+        self.updatedValues?(values)
+
     }
 
     @objc
@@ -366,6 +340,20 @@ class TransformerView: UIView {
             self.skillTextField.text?.isEmpty == false
     }
 
+    typealias TransformerAttributes = (
+        name: String,
+        team: TransformerTeam,
+        strength: Int32,
+        intelligence: Int32,
+        speed: Int32,
+        endurance: Int32,
+        rank: Int32,
+        courage: Int32,
+        firepower: Int32,
+        skill: Int32
+    )
+
+    var updatedValues: ((TransformerAttributes) -> Void)?
 
     init(model: Transformer?) {
         self.transformer = model

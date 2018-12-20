@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum HTTPHeader {
     case contentType(String)
@@ -21,6 +22,14 @@ struct Resource<T: Codable> {
     let parse: (Data) throws -> T
 }
 
+extension JSONDecoder {
+    convenience init(managedObjectContext: NSManagedObjectContext) {
+        self.init()
+        if let key = CodingUserInfoKey.managedObjectContext {
+            self.userInfo[key] = managedObjectContext
+        }
+    }
+}
 extension Resource {
 
     init(url: URL,

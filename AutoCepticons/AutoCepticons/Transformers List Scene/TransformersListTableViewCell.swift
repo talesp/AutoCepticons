@@ -63,21 +63,9 @@ class TransformersListTableViewCell: UITableViewCell, Reusable {
         self.titleLabel.text = transformer.name
         self.attributesView.setup(transformer: transformer)
 
-        let session = URLSession(configuration: .default)
-        guard let url = transformer.teamIconURL else {
-            return
-        }
-        dataTask = session.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
+        guard let data = transformer.teamIcon else { return }
 
-            let image = UIImage(data: data)
-            DispatchQueue.main.async {
-                guard let image = image else { return }
-
-                self.iconImageView.image = image
-            }
-        }
-        self.dataTask?.resume()
+        self.iconImageView.image = UIImage(data: data)
 
     }
 

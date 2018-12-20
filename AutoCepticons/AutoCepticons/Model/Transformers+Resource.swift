@@ -30,13 +30,23 @@ extension Transformer {
 
     func post() -> Resource<Transformer> {
         let headers: [HTTPHeader] = [.contentType("application/json"), .authorization("Bearer \(UserDefaults.allSpark!)")]
-        return Resource(url: Transformer.resourceBaseURL, method: .post(self), headers: headers)
+        guard let context = self.managedObjectContext else {
+            fatalError("should have a managed object context")
+        }
+
+        let decoder = JSONDecoder(managedObjectContext: context)
+        return Resource(url: Transformer.resourceBaseURL, method: .post(self), headers: headers, decoder: decoder)
     }
 
     func put() -> Resource<Transformer> {
         let headers: [HTTPHeader] = [.contentType("application/json"), .authorization("Bearer \(UserDefaults.allSpark!)")]
         let url = Transformer.resourceBaseURL
-        return Resource(url: url, method: .put(self), headers: headers)
+        guard let context = self.managedObjectContext else {
+            fatalError("should have a managed object context")
+        }
+
+        let decoder = JSONDecoder(managedObjectContext: context)
+        return Resource(url: url, method: .put(self), headers: headers, decoder: decoder)
     }
 
     func delete() -> Resource<TransformersList> {

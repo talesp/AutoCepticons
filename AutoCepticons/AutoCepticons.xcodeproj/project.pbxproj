@@ -12,6 +12,9 @@
 		0207703221C59539000F30FC /* TransformersListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207703121C59539000F30FC /* TransformersListTableViewCell.swift */; };
 		0207703421C59ECA000F30FC /* TransformersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207703321C59ECA000F30FC /* TransformersDataSource.swift */; };
 		0207703721C5A61C000F30FC /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207703621C5A61C000F30FC /* Reusable.swift */; };
+		0207703A21C739C0000F30FC /* AutoCepticons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0207703821C739C0000F30FC /* AutoCepticons.xcdatamodeld */; };
+		0207706B21C850CB000F30FC /* PersistencyStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207706A21C850CB000F30FC /* PersistencyStack.swift */; };
+		0207706D21C851B2000F30FC /* NSManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0207706C21C851B2000F30FC /* NSManagedObject.swift */; };
 		0208CF0D21AA344C008977C2 /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF0C21AA344C008977C2 /* Transformer.swift */; };
 		0208CF1021AA3471008977C2 /* TransformersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF0F21AA3471008977C2 /* TransformersList.swift */; };
 		0208CF1221AA353D008977C2 /* TransformersAPIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208CF1121AA353D008977C2 /* TransformersAPIConfig.swift */; };
@@ -58,6 +61,9 @@
 		0207703121C59539000F30FC /* TransformersListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersListTableViewCell.swift; sourceTree = "<group>"; };
 		0207703321C59ECA000F30FC /* TransformersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersDataSource.swift; sourceTree = "<group>"; };
 		0207703621C5A61C000F30FC /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		0207703921C739C0000F30FC /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		0207706A21C850CB000F30FC /* PersistencyStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistencyStack.swift; sourceTree = "<group>"; };
+		0207706C21C851B2000F30FC /* NSManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObject.swift; sourceTree = "<group>"; };
 		0208CF0C21AA344C008977C2 /* Transformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformer.swift; sourceTree = "<group>"; };
 		0208CF0F21AA3471008977C2 /* TransformersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersList.swift; sourceTree = "<group>"; };
 		0208CF1121AA353D008977C2 /* TransformersAPIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersAPIConfig.swift; sourceTree = "<group>"; };
@@ -119,6 +125,7 @@
 		0207702E21C545B7000F30FC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0268824221A9B6CC00676446 /* ViewConfiguration.swift */,
 				0207702F21C545CA000F30FC /* ViewFactory.swift */,
 			);
 			path = View;
@@ -130,6 +137,15 @@
 				0207703621C5A61C000F30FC /* Reusable.swift */,
 			);
 			path = Reusable;
+			sourceTree = "<group>";
+		};
+		0207706E21C852D1000F30FC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				0207703821C739C0000F30FC /* AutoCepticons.xcdatamodeld */,
+				0207706A21C850CB000F30FC /* PersistencyStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		0208CF0E21AA3460008977C2 /* Model */ = {
@@ -166,6 +182,7 @@
 		0268821321A8D3A100676446 /* AutoCepticons */ = {
 			isa = PBXGroup;
 			children = (
+				0207706E21C852D1000F30FC /* CoreData */,
 				0207703521C5A605000F30FC /* Reusable */,
 				0207702E21C545B7000F30FC /* View */,
 				02F3C7A821AB2E1200883A06 /* Transformer Scene */,
@@ -178,7 +195,6 @@
 				0268821B21A8D3A200676446 /* Assets.xcassets */,
 				0268821D21A8D3A200676446 /* LaunchScreen.storyboard */,
 				0268822021A8D3A200676446 /* Info.plist */,
-				0268824221A9B6CC00676446 /* ViewConfiguration.swift */,
 			);
 			path = AutoCepticons;
 			sourceTree = "<group>";
@@ -197,6 +213,7 @@
 			children = (
 				0268823521A9B51E00676446 /* Optionals.swift */,
 				0208CF1721AAD344008977C2 /* UserDefaults.swift */,
+				0207706C21C851B2000F30FC /* NSManagedObject.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -447,6 +464,7 @@
 			files = (
 				02CA851E21AB1D83003CA5A2 /* AllSparkLoaderView.swift in Sources */,
 				0268824321A9B6CC00676446 /* ViewConfiguration.swift in Sources */,
+				0207706B21C850CB000F30FC /* PersistencyStack.swift in Sources */,
 				0208CF1421AA35F2008977C2 /* TransformersList+Resource.swift in Sources */,
 				0208CF2021AB0F24008977C2 /* DecoderProtocol.swift in Sources */,
 				0208CF1021AA3471008977C2 /* TransformersList.swift in Sources */,
@@ -459,6 +477,7 @@
 				0268823621A9B51E00676446 /* Optionals.swift in Sources */,
 				0208CF0D21AA344C008977C2 /* Transformer.swift in Sources */,
 				02F3C7A521AB269500883A06 /* TransformersViewController.swift in Sources */,
+				0207706D21C851B2000F30FC /* NSManagedObject.swift in Sources */,
 				0268823D21A9B64B00676446 /* Resource.swift in Sources */,
 				0208CF1621AA37C9008977C2 /* Transformers+Resource.swift in Sources */,
 				0208CF1221AA353D008977C2 /* TransformersAPIConfig.swift in Sources */,
@@ -473,6 +492,7 @@
 				0207703021C545CA000F30FC /* ViewFactory.swift in Sources */,
 				0268823F21A9B68300676446 /* URLRequest+Resource.swift in Sources */,
 				0207702D21C53E6F000F30FC /* TransformerAttributesView.swift in Sources */,
+				0207703A21C739C0000F30FC /* AutoCepticons.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +758,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0207703821C739C0000F30FC /* AutoCepticons.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0207703921C739C0000F30FC /* Model.xcdatamodel */,
+			);
+			currentVersion = 0207703921C739C0000F30FC /* Model.xcdatamodel */;
+			path = AutoCepticons.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0268820921A8D3A100676446 /* Project object */;
 }

@@ -12,10 +12,13 @@ import os
 class AllSparkLoaderViewController: UIViewController {
 
     private let webservice: Webservice
+    private var persistencyStack: PersistencyStack
+
     private lazy var log = OSLog(subsystem: "com.talesp.autocepticons", category: "allspark")
 
-    init(webservice: Webservice = Webservice()) {
+    init(persistencyStack: PersistencyStack, webservice: Webservice = Webservice()) {
         self.webservice = webservice
+        self.persistencyStack = persistencyStack
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -35,9 +38,9 @@ class AllSparkLoaderViewController: UIViewController {
             case .success(let allspark):
                 os_log(OSLogType.debug, log: self.log, "got allspark: %{private}s", allspark)
                 UserDefaults.allSpark = allspark
-                let viewController = TransformersViewController()
-                viewController.modalTransitionStyle = .crossDissolve
                 DispatchQueue.main.async {
+                    let viewController = TransformersViewController(persistencyStack: self.persistencyStack)
+                    viewController.modalTransitionStyle = .crossDissolve
                     self.show(viewController, sender: self)
                 }
 

@@ -21,7 +21,7 @@ class ViewFactory {
         return view
     }
 
-    func textField(title: Int?,
+    func textField(title: Int32?,
                    delegate: UITextFieldDelegate?,
                    toolbar: UIToolbar?,
                    isAsciiCapable: Bool = false,

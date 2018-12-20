@@ -13,15 +13,19 @@ class TransformersViewController: UIViewController {
     private let transformersView = TransformersView(frame: .zero)
     private let webservice: Webservice
     private let datasource: TransformersDataSource
+    private let persistencyStack: PersistencyStack
 
-    init(webservice: Webservice = Webservice(urlSession: URLSession(configuration: .default))) {
+    init(persistencyStack: PersistencyStack, webservice: Webservice = Webservice(urlSession: URLSession(configuration: .default))) {
+        self.persistencyStack = persistencyStack
         self.webservice = webservice
-        datasource = TransformersDataSource(tableView: self.transformersView.tableView) 
+        datasource = TransformersDataSource(tableView: self.transformersView.tableView,
+                                            persistencyStack: persistencyStack) 
         super.init(nibName: nil, bundle: nil)
 
         datasource.didSelect = { [weak self] transformer in
             guard let self = self else { return }
-            self.show(TransformerViewController(transformer: transformer), sender: self)
+            self.show(TransformerViewController(persistencyStack: persistencyStack, transformer: transformer),
+                      sender: self)
         }
     }
 
@@ -49,27 +53,35 @@ class TransformersViewController: UIViewController {
                                              action: #selector(fightTransformers(sender:)))
         self.navigationItem.setLeftBarButton(leftButtonItem, animated: true)
         datasource.tableView?.backgroundView = datasource.transformers.count == 0 ? TransformersEmptyView() : nil
-        self.webservice.load(TransformersList.resource()) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let response):
-                DispatchQueue.main.async {
-                    self.datasource.updateDatasource(transformers: response.transformers)
-                    UIView.animate(withDuration: 0.25, animations: {
-                        self.datasource.tableView?.backgroundView?.alpha = 0
-                    }, completion: { didFinished in
-                        self.datasource.tableView?.backgroundView = nil
-                    })
-                }
-            case .failure(let error):
-                fatalError(error.localizedDescription)
-            }
-        }
+//        self.webservice.load(TransformersList.resource()) { [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(let response):
+//                DispatchQueue.main.async {
+//                    self.datasource.updateDatasource(transformers: response.transformers)
+//                    UIView.animate(withDuration: 0.25, animations: {
+//                        self.datasource.tableView?.backgroundView?.alpha = 0
+//                    }, completion: { didFinished in
+//                        self.datasource.tableView?.backgroundView = nil
+//                    })
+//                }
+//            case .failure(let error):
+//                fatalError(error.localizedDescription)
+//            }
+//        }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let tableView = self.datasource.tableView,
+            let indexPath = tableView.indexPathForSelectedRow else { return }
+        tableView.deselectRow(at: indexPath, animated: false)
+        tableView.reloadRows(at: [indexPath], with: .fade)
+
+    }
     @objc
     func createTransformer(sender: Any) {
-        self.show(TransformerViewController(transformer: nil), sender: self)
+        self.show(TransformerViewController(persistencyStack: persistencyStack, transformer: nil), sender: self)
     }
 
     private func whoIsTheBravest(_ autobot: Transformer, decepticon: Transformer) -> TransformerTeam? {
